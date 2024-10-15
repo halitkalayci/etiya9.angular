@@ -8,3 +8,17 @@
 
 <button (click)="increaseCount()">Artır</button>
 <button (click)="decreaseCount()">Azalt</button>
+
+<br />
+<input
+  placeholder="Adınızı Girin"
+  [value]="name"
+  (keyup)="onNameChange($event)"
+/>
+<button (click)="randomName()">Rastgele İsim Getir</button>
+<p>{{ name }}</p>
+
+<!-- NGModel = ilgili değişken ile two way d.b yapar. -->
+<!-- Banana Syntax -->
+<input placeholder="Soyad girin.." [(ngModel)]="surname" />
+<p>{{ surname }}</p>

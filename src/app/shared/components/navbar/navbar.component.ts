@@ -1,8 +1,9 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-navbar',
-  imports: [FormsModule],
+  imports: [CommonModule, FormsModule],
   standalone: true,
   templateUrl: './navbar.component.html', // direkt html'i ts içerisinde yazabiliriz.
   styleUrl: './navbar.component.scss',
@@ -12,6 +13,7 @@ export class NavbarComponent implements OnInit, OnChanges {
   count: number = 10;
   name: string = '';
   surname: string = 'Kalaycı';
+  names: string[] = ['Emre', 'Eren', 'Çağatay', 'Zeynep', 'Ceren', 'Eylül'];
   constructor() {}
   // component lifecycle methods
   ngOnInit(): void {

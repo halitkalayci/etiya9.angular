@@ -1,6 +1,11 @@
-<p>todo-list works!</p>
-<!-- Kullanıcının todo girebileceği bir form, altında todoların listelenmesi, her todonun 1. 2. diye sıralanması -->
-<!-- Sonunda (X) ikonu ile listeden kaldırılabilmesi -->
-<!-- Ekleme esnasında aynı todo mevcutsa (frontend kontrolü) eklemeyip inputu temizlesin.  -->
-<!-- Her ekleme sonrası input temizlensin. -->
-<!-- Bireysel -->
+<h3>To-Do List</h3>
+<label>To-Do Giriniz</label>
+<input placeholder="Todo..." [(ngModel)]="newTodo" />
+<button class="btn btn-primary" (click)="add()">Ekle</button>
+<div class="d-flex">
+  @for(todo of todoList; track todo; let i = $index) {
+  <app-todo-card [toDoFromOtherPage]="todo" (onRemoveClick)="remove($event)" />
+  } @empty {
+  <p>Henüz bir todo eklemediniz.</p>
+  }
+</div>

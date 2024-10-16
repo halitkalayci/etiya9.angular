@@ -3,6 +3,7 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
+import { provideNetlifyLoader } from '@angular/common';
 
 // Global konfigürasyon yapısı (kod için)
 export const appConfig: ApplicationConfig = {
@@ -12,3 +13,5 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(), // artık tüm uygulama http client kullanabilir
   ],
 };
+
+// httpclient,

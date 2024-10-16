@@ -2,9 +2,15 @@
 <label>To-Do Giriniz</label>
 <input placeholder="Todo..." [(ngModel)]="newTodo" />
 <button class="btn btn-primary" (click)="add()">Ekle</button>
-<div class="d-flex">
-  @for(todo of todoList; track todo; let i = $index) {
-  <app-todo-card [toDoFromOtherPage]="todo" (onRemoveClick)="remove($event)" />
+<div class="row">
+  @for(todo of toDoListFromBackend; track todo; let i = $index) {
+  <div class="col-2">
+    <app-todo-card
+      [toDoFromOtherPage]="todo.title"
+      (onRemoveClick)="remove($event)"
+    />
+  </div>
+
   } @empty {
   <p>Henüz bir todo eklemediniz.</p>
   }

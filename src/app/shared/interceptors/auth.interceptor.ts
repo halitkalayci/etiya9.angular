@@ -1,5 +1,5 @@
 import { HttpInterceptorFn } from '@angular/common/http';
-import { catchError, finalize } from 'rxjs';
+import { catchError, finalize, tap } from 'rxjs';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
   // req => request (giden istek)

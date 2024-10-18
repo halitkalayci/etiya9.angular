@@ -1,12 +1,18 @@
 import { HttpInterceptorFn } from '@angular/common/http';
+import { inject } from '@angular/core';
 import { catchError, finalize, tap } from 'rxjs';
+import { StorageService } from '../services/storage.service';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
   // req => request (giden istek)
   // next => isteği devam ettirecek fonksiyon.
+
+  // fn bazlı DI
+  const storageService = inject(StorageService);
+
   req = req.clone({
     setHeaders: {
-      Authorization: `Bearer interceptortoken`,
+      Authorization: `Bearer ${storageService.get('token')}`,
       'Accept-Language': `en`,
     },
   });

@@ -8,6 +8,9 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+import { TokenResponse } from '../../models/auth/tokenResponse';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +22,12 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   form!: FormGroup;
   // Reactive Forms
-  constructor(private formBuilder: FormBuilder, private router: Router) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private authService: AuthService,
+    private storageService: StorageService
+  ) {}
   ngOnInit(): void {
     this.buildForm();
   }
@@ -40,8 +48,12 @@ export class LoginComponent implements OnInit {
       return;
     }
     // http isteği
-    console.log(this.form.value);
-    this.router.navigateByUrl('/');
+    this.authService.login(this.form.value).subscribe({
+      next: (response: TokenResponse) => {
+        console.log('Giriş başarılı token alındı:', response);
+        this.storageService.set('token', response.token);
+      },
+    });
   }
 
   hasError(controlName: string) {
